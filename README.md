@@ -2,18 +2,30 @@
 Tool Command Language (Tcl) is a simple and flexible scripting language widely used in EDA, software development, and system administration. It enables automation, command execution, and data manipulation through easy-to-write scripts.
 ## Day1: Introduction and VSDSYNTH Toolbox Usage
 ### Task1: Create command of vsdsynth and pass the csv file from UNIX shell to TCL script
-A custom command (sandy) was created to pass a CSV file from the UNIX shell to the Tcl script, following an algorithm that first informs the system it's a UNIX script.
+1. A custom command (sandy) was created to pass a CSV file from the UNIX shell to the Tcl script, following an algorithm that first informs the system it's a UNIX script.
 ``` bash 
  #!/bin/tcsh -f  
  ```
+2. Created the logo
+![pic4](https://github.com/user-attachments/assets/4dd7bf58-10c8-4bee-8090-062191ff3b47)
+3. verifying three general scenarios for a user POV
+   - User Not provided the .csv file as input:
+If user type only ./sandysynth without any csv file, then this line of the code will work saying provide the csv file.
+![pic6](https://github.com/user-attachments/assets/f0dc111d-ff44-4223-a62a-a5c53525666f)
+![image](https://github.com/user-attachments/assets/afa54068-1669-4ac4-81e7-a65e131f94ae)
+ - Users provide a .csv file which doesn’t exist:
+If user have provided the csv file with ./sandysynth my.csv then first it will check for the argument if it is true, then go to next line and then again check whether the argument 1 is not equal to -help then the error will print by telling the user that cannot find the csv file my.csv
+![pic7](https://github.com/user-attachments/assets/46f69159-7fd3-463c-b7d1-4dc90b4f644a)
+![image](https://github.com/user-attachments/assets/b8bbeb68-8dd3-4f77-9d62-fded5642bdf1)
+- Type “-help” to find out usage:
+If we user wants to find out the usage, then type ./sandysynth -help the section is true and enter else loop
+![pic8](https://github.com/user-attachments/assets/cd386120-755a-4434-9234-68f584e24524)
+![image](https://github.com/user-attachments/assets/10d9f9da-9dd1-4d3e-be9a-4489e7e58c8d)
+4. source the Unix shell to the Tcl script by passing the required csv file
+  ``` bash 
+ tclsh pandabro.tcl $argv[1]  
+ ```
 
-
-I.	User Not provided the .csv file as input:
-If we type only ./sandysynth without any csv file, then this line of the code will work saying provide the csv file(Pic6). 
-II.	Users provide a .csv file which doesn’t exist:
-If we have provided the csv file with ./sandysynth my.csv then first it will check for the argument if it is true, then go to next line and then again check whether the argument 1 is not equal to -help then the error will print by telling the user that cannot find the csv file my.csv (Pic7)
-III.	Type “-help” to find out usage:
-If we user wants to find out the usage, then type ./sandysynth -help the section is true and enter else loop (Pic8) All the commands executed and pic9
 DAY 2:
 2.	Convert all files to format[1] and SDC format, and pass to synthesis tool “yosys”
 I.	Create the variables 
