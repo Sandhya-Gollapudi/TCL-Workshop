@@ -74,16 +74,19 @@ set duty_cycle_start [lindex [lindex [constraints search all duty_cycle] 0] 0]
 ![pic23](https://github.com/user-attachments/assets/1ec87b12-3b06-43a0-b5f1-2b29924dee4c)
 ![pic24](https://github.com/user-attachments/assets/1216c03a-1209-4ed3-9df8-3e86d3b64444)
 8. splitting:
+
 ![pic25](https://github.com/user-attachments/assets/ac3bbbfd-4693-4937-8044-15da6f8131aa)
 9. sorting:
+
 ![pic26](https://github.com/user-attachments/assets/f1fd7fdb-929e-4435-8c22-3635220852cd)
 10. joining:
+
 ![pic27](https://github.com/user-attachments/assets/924f7118-a6e4-47a1-b008-f216c8de02f3)
 11. Finally, all these constraints will be saved in sdc file which will show the constraints in file name  $outputDirectory/$DesignName.sdc after the code is fully executed
 ![pic29](https://github.com/user-attachments/assets/38eac404-2ce6-4927-8a8a-0a552dd2109a)
 12. A snippet of the sdc
 ![pic30](https://github.com/user-attachments/assets/f0fea9a2-d630-4050-ab50-f661c8be20c8)
-file pic31
+
 - Constraints generation logic for the output port and conclusion!!
 The script is exactly same as the input, but the only difference is we are replacing the input with the output.
 ![pic32](https://github.com/user-attachments/assets/f41e8ed8-e6fe-42a7-91c8-b168ff30309c)
