@@ -34,13 +34,14 @@ Note : Make sure the file is executable by using the command chmod -R 777 panda
 2. Check if directories and files mentioned in .csv exist or not 
 ![pic12](https://github.com/user-attachments/assets/54ab1b60-f7f1-462f-8035-c9f973bbd7bc)
 3. Read constraints file for above .csv and convert to SDC format
-![image](https://github.com/user-attachments/assets/a70d4bda-7993-4726-8d43-40546a3ef3bb)
+![WhatsApp Image 2025-05-09 at 5 50 36 PM](https://github.com/user-attachments/assets/dfefaf2f-b369-401f-8ff3-aa35acaddfa9)
 We need to get row number for the inputs like clocks, inputs and outputs and need to process them separately
 ![pic16](https://github.com/user-attachments/assets/22dae1f1-bc28-43b4-aeb5-401ee7ccb086)
 
 ## DAY 3:
-IV.	Read all files in netlist directory
-Clock ports:
+### Read all files in netlist directory
+-Clock ports: 
+![image](https://github.com/user-attachments/assets/060c5c73-c099-45e0-ade6-0bb2b24e3c1e)
 1.	The rectangle area which is highlighted we can get by using the code below and by executing the code we will get the early rise_delay is equal to 3 from the number of columns and input ports start we will get the boundaries of that rectangle box screen shot in tab
 2.	We are opening the openMSp430.sdc in write mode by using the command set sdc_file [open $outputDirectory/$DesignName.sdc “w” now we will take the various values from the csv file and write it ibn to sdc constraints which has /port/ signal /variable names picked from the excel file and corresponding values of the constraints. The csv file is input and the sdc constraints are the output. Screen shot in tab pic 17,18,19
 Algorithm to categorize input ports as bits and bussed
