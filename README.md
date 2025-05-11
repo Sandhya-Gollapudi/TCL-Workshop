@@ -404,7 +404,7 @@ close $conf_file
 ![pic59](https://github.com/user-attachments/assets/e7f8f872-b683-4ab0-a083-6205cc971579)
 ![image](https://github.com/user-attachments/assets/ea301503-5d66-4614-86b9-3cbfb3e906b0)
 
-*** Quality of Results(QOR) generation:
+### Quality of Results(QOR) generation:
 
 - Running sta analysis:
   
@@ -533,7 +533,7 @@ puts "\n"
 ## Conclusion
 - All tasks for the Tcl workshop have been completed
 - All simulation errors were resolved.
--
+
 
 
 
