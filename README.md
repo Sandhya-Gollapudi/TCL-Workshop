@@ -84,9 +84,13 @@ set duty_cycle_start [lindex [lindex [constraints search all duty_cycle] 0] 0]
 10. joining:
 
 ![pic27](https://github.com/user-attachments/assets/924f7118-a6e4-47a1-b008-f216c8de02f3)
+
 11. Finally, all these constraints will be saved in sdc file which will show the constraints in file name  $outputDirectory/$DesignName.sdc after the code is fully executed
+
 ![pic29](https://github.com/user-attachments/assets/38eac404-2ce6-4927-8a8a-0a552dd2109a)
+
 12. A snippet of the sdc
+
 ![pic30](https://github.com/user-attachments/assets/f0fea9a2-d630-4050-ab50-f661c8be20c8)
 
 - Constraints generation logic for the output port and conclusion!!
