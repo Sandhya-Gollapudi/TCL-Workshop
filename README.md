@@ -76,9 +76,11 @@ set duty_cycle_start [lindex [lindex [constraints search all duty_cycle] 0] 0]
 8. splitting:
 
 ![pic25](https://github.com/user-attachments/assets/ac3bbbfd-4693-4937-8044-15da6f8131aa)
+
 9. sorting:
 
 ![pic26](https://github.com/user-attachments/assets/f1fd7fdb-929e-4435-8c22-3635220852cd)
+
 10. joining:
 
 ![pic27](https://github.com/user-attachments/assets/924f7118-a6e4-47a1-b008-f216c8de02f3)
