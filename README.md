@@ -250,8 +250,10 @@ foreach elem $find_clocks {
 	puts $timing_file "clock $clock_port_name $clock_period $duty_cycle"
 	}
 close $tmp_file
-}```
+}
+```
 - creating clock_latency constraints
+  
 ``` bash
 set find_keyword [lsearch -all -inline $lines "set_clock_latency*"]
 #puts $find_keyword
@@ -376,6 +378,7 @@ puts "\nInfo: STA finished in $time_elapsed_in_sec seconds"
 }
  ```
 - outputs of STA analysis from the .results file:
+
  ``` bash 
  #-------------------------find worst output violation--------------------------------#
 set worst_RAT_slack "-"
@@ -460,10 +463,11 @@ while {[gets $report_file line] != -1} {
 }
 close $report_file    
 }
- ```
+```
 1. output data is taken from .results file.
 ![pic62](https://github.com/user-attachments/assets/77d2904c-966b-408f-a970-bb2fa7072b9d)
-   ``` bash 
+
+``` bash 
  puts "\n"
 puts "						****PRELAYOUT TIMING RESULTS**** 					"
 set formatStr "%15s %15s %15s %15s %15s %15s %15s %15s %15s"
@@ -477,7 +481,8 @@ foreach design_name $DesignName runtime $time_elapsed_in_sec instance_count $Ins
 
 puts [format $formatStr "----------" "-------" "--------------" "---------" "---------" "--------" "--------" "-------" "-------"]
 puts "\n"
- ```
+```
+
 2. Report Formatting (pic63)
 ![pic63](https://github.com/user-attachments/assets/7c2cf0e7-1ff7-4fca-80ec-5709dee0d0fa)
 
