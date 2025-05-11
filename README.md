@@ -137,9 +137,13 @@ Edit Output File
 
 ### PROCS:
 To generate a script for OpenTimer I will be making use of procs. Procs are an external tcl file that perform an operation that is specified in it when sourced to the main tcl file. It works similar to how a function works in Python Programming. An example of a proc would be read_liberty where options like -lib, -late, -early and /or can be passed as an arguememt to the proc. Once the proc is sourced in the main tcl script the read_liberty command will be executed by referring to the proc and mapping the arguements to the external tcl script(proc script). At the end of the proc command, the main tcl script will be left with the output of the proc.
+
 ![image](https://github.com/user-attachments/assets/61c50a5a-29d8-4b56-b536-09ac646a8912)
+
 Eg: set_multi_cpu_usage PROC  this is used for distributed operations
+
 ![image](https://github.com/user-attachments/assets/3d61730c-981f-4155-8520-14305bb6510e)
+
 1. reopenStdout.proc
 - The reopenStdout proc is a simple proc which is used to close the main terminal stdout and open a file in write mode
 ``` bash 
@@ -151,10 +155,13 @@ Eg: set_multi_cpu_usage PROC  this is used for distributed operations
 }
  ```
 ![pic49](https://github.com/user-attachments/assets/79c2342c-2e01-4991-aea8-861fc1830000)
+
 2. Set_multi_cpu_usage 
+
 - "array set options { -localCpu <num_of_threads> -help "" }" --> set an array named options. options is a list of key-value pairs, where each key is a string representing the element's name, and each value is the corresponding value to assign to that element. eg, "-localCpu is linked to <num_of_threads>" and "-help" is linked to "".
 - "switch -glob -- [lindex $args 0]" --> globbing is used to get the term inside [] so that switch can map to the corresponding case. Takes only the ket of the key-value pair
 - "set args [lassign $args - options(-localCpu)]" --> assigning new value to args after removing the array element which was used to enter the loop
+
 ``` bash 
  proc set_multi_cpu_usage {args} {
     array set options {-localCpu <num_of_threads> -help "" }
@@ -181,16 +188,23 @@ Eg: set_multi_cpu_usage PROC  this is used for distributed operations
     }
 }       
 }
- ```
+```
 ![pic50](https://github.com/user-attachments/assets/2d9f9a51-194e-45c7-9a53-bb5f8db43bb3)
 ![pic51](https://github.com/user-attachments/assets/d5d0b15d-749e-456e-bd15-ab0be546bc8d)
+
 - Open .conf file to see the output 
+
 ![image](https://github.com/user-attachments/assets/787030aa-7296-49aa-979e-eb0a9db57f14)
+
 - after removing all the puts commands.
+
 ![pic53](https://github.com/user-attachments/assets/3fbc9549-de05-4d65-be1a-98ebd28195d2)
+
 3. Read_lib_PROC:
+  
 - Similar to the set_num_threads proc , the read_lib proc will have 3 options i.e late early and help the proc ensures to read the late and early lib file for STA and write it in a file
-  ``` bash
+
+``` bash
   proc read_lib args {
 	array set options {-late <late_lib_path> -early <early_lib_path> -help ""}
 	while {[llength $args]} {
@@ -213,21 +227,30 @@ Eg: set_multi_cpu_usage PROC  this is used for distributed operations
 		}
 	}
 } 
- ```
+```
 - It will set the paths to early and late libraries of .csv file.
+
 ![image](https://github.com/user-attachments/assets/11d0122a-779f-4c15-b6f4-4cae9e29887c)
+
 - if we comment the reopenStdout then this will appear on the screen and there is no .conf file that is created.
+
 ![pic55](https://github.com/user-attachments/assets/d21a2f4d-7723-43b1-9427-e884cc926e7a)
+
 4. Read_verilog_Proc:
+
 - This proc enters the puts statement followed by the netlist file
+
 ``` bash
 proc read_verilog arg1 {
   puts "set_verilog_fpath $arg1"
 }
 ```
 ![image](https://github.com/user-attachments/assets/e853c8c5-3ffa-4df8-92b4-88aaacea37c9)
+
 5. Read_SDC_Proc:
+
 - The read_sdc proc is a large proc file which will be covered in parts. This is done to convert sdc file into OpenTimer format
+
 ``` bash
 proc read_sdc {arg1} {
 set sdc_dirname [file dirname $arg1]
@@ -241,8 +264,11 @@ close $tmp_file
 }
 ```
 - setting directory and filename for sdc , also replacing the " [] " with "" in a temp file
+
 - special mapping done so that it can diffrentiate between "abc" and "abc_en". Refer the block of code.
+
 ![image](https://github.com/user-attachments/assets/4fff2126-0b5c-4c3e-96f1-1cc14765f2eb)
+
 - converting create_clock constraints
 ``` bash
 set tmp_file [open /tmp/4 r]
@@ -289,9 +315,12 @@ puts -nonewline $timing_file [read $tmp2_file]
 close $tmp2_file
 ```
 - output of the script:
+  
 ![image](https://github.com/user-attachments/assets/331c2d01-6e55-4435-81e3-11f6f1c31908)
+
 - similarly the constraints for "set_clock_transition", "set_input_delay", "set_input_transition", "set_output_delay" and "set_load" are written in same fashion
-  ``` bash
+
+``` bash
 set ot_timing_file [open $sdc_dirname/$sdc_filename.timing w]
 set timing_file [open /tmp/3 r]
 while {[gets $timing_file line] != -1} {
@@ -316,6 +345,7 @@ puts "set_timing_fpath $sdc_dirname/$sdc_filename.timing"
 }
 ```
 - Main file:
+
 ``` bash
 puts "\nInfo: Timing Analysis Started ... "
 puts "\nInfo: initializing number of threads, libraries, sdc, verilog netlist path..."
@@ -336,9 +366,11 @@ source /home/vsduser/vsdsynth/procs/read_sdc.proc
 read_sdc $OutputDirectory/$DesignName.sdc
 reopenStdout /dev/tty
 }
+
 ```
 6. Creating the spef file and config file
-  ``` bash
+
+``` bash
 if {$enable_prelayout_timing == 1} {
 	puts "\nInfo: enable prelayout_timing is $enable_prelayout_timing. Enabling zero-wire load parasitics"
 	set spef_file [open $OutputDirectory/$DesignName.spef w]
@@ -373,8 +405,10 @@ close $conf_file
 ![image](https://github.com/user-attachments/assets/ea301503-5d66-4614-86b9-3cbfb3e906b0)
 
 *** Quality of Results(QOR) generation:
+
 - Running sta analysis:
-  ``` bash 
+  
+ ``` bash 
  set tcl_precision 3
 set time_elapsed_in_us [time {exec /home/vsduser/OpenTimer-1.0.5/bin/OpenTimer < $OutputDirectory/$DesignName.conf >& $OutputDirectory/$DesignName.results} 1]
 puts "time_elapsed_in_us is $time_elapsed_in_us"
@@ -382,7 +416,7 @@ set time_elapsed_in_sec "[expr {[lindex $time_elapsed_in_us 0]/100000}]sec"
 #puts "time_elapsed_in_sec is $time_elapsed_in_sec"
 puts "\nInfo: STA finished in $time_elapsed_in_sec seconds"      
 }
- ```
+```
 - outputs of STA analysis from the .results file:
 
  ``` bash 
@@ -469,8 +503,10 @@ while {[gets $report_file line] != -1} {
 }
 close $report_file    
 }
+
 ```
 1. output data is taken from .results file.
+   
 ![pic62](https://github.com/user-attachments/assets/77d2904c-966b-408f-a970-bb2fa7072b9d)
 
 ``` bash 
@@ -487,9 +523,11 @@ foreach design_name $DesignName runtime $time_elapsed_in_sec instance_count $Ins
 
 puts [format $formatStr "----------" "-------" "--------------" "---------" "---------" "--------" "--------" "-------" "-------"]
 puts "\n"
+
 ```
 
-2. Report Formatting (pic63)
+2. Report Formatting.
+   
 ![pic63](https://github.com/user-attachments/assets/7c2cf0e7-1ff7-4fca-80ec-5709dee0d0fa)
 
 ## Conclusion
