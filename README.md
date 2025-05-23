@@ -535,7 +535,8 @@ puts "\n"
 - All simulation errors were resolved.
 
 
-
+# Acknowledgement
+I would like to express my sincere gratitude to Mr. Kunal Ghosh for conducting this insightful workshop, and I also extend my thanks to the GitHub OpenLane community for their invaluable contributions and support.
 
 
 
